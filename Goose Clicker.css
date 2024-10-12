@@ -1,0 +1,295 @@
+#main{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+#left{
+
+    width: 33.33%;
+    height: 100%;
+    float:left;
+    background-color: antiquewhite;
+
+}
+
+#gooseCount{
+
+    float: left;
+    text-align: center;
+    font-size: 36px;
+    font-family: sans-serif;
+    width: 100%;
+    height: 10%;
+    background-color: aliceblue;
+
+}
+
+#goosePerSecond{
+
+    float: left;
+    text-align: center;
+    font-size: 30px;
+    font-family: sans-serif;
+    width: 100%;
+    height: 10%;
+    background-color: rebeccapurple;
+
+}
+
+#mainGoose{
+
+    float: left;
+    width: 100%;
+    height: 80%;
+
+}
+
+#center{
+
+    float: left;
+    width: 33.33%;
+    height: 100%;
+    background-color: red;
+
+}
+
+#centerTitle{
+
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    font-size: 40px;
+    font-family: sans-serif;
+    background-color: aqua;
+
+}
+
+#chipmunk{
+
+    width: calc(100%/7);
+    padding-bottom: calc(100%/7);
+    background-color: beige;
+
+}
+
+#right{
+
+    width: 33.33%;
+    height: 100%;
+    float:left;
+    background-color: aquamarine;
+
+}
+
+#shopBanner{
+
+    text-align: center;
+    font-size: 40px;
+    font-family: sans-serif;
+    background-color: blueviolet;
+
+}
+
+#grass{
+
+    float: left;
+    font-family: sans-serif;
+    background-color: green;
+    height: 10%;
+    position: relative;
+
+}
+
+#grassTooltip{
+
+    visibility: hidden;
+    position: absolute;
+    background-color: darkred;
+    color: white;
+    right: 103%;
+    width: 45%;
+    font-family: sans-serif;
+    border: solid brown;
+
+}
+
+#grass:hover #grassTooltip{
+
+    visibility: visible;
+
+}
+
+#grassImage{
+
+    float: left;
+    width: 10%;
+    padding-bottom: 10%;
+
+}
+
+#grassLeft{
+
+    display: flex;
+    align-items: center;
+    float: left;
+    font-size: 40px;
+    height: 100%;
+    background-color: brown;
+    width: 60%;
+
+}
+
+#grassRight{
+
+    float: left;
+    height: 100%;
+    width: 30%;
+    background-color: pink;
+    font-size: 20px;
+
+}
+
+#grassRightTop{
+    
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    background-color: pink;
+
+}
+
+#grassRightBottom{
+    
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    background-color: blue;
+
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+#wheat{
+
+    font-family: sans-serif;
+    background-color: green;
+    height: 10%;
+
+}
+
+#wheatImage{
+
+    float: left;
+    height: 100%;
+    width: 10%;
+
+}
+
+#wheatLeft{
+
+    display: flex;
+    align-items: center;
+    float: left;
+    font-size: 40px;
+    height: 100%;
+    background-color: brown;
+    width: 60%;
+
+}
+
+#wheatRight{
+
+    float: left;
+    height: 100%;
+    width: 30%;
+    background-color: pink;
+    font-size: 20px;
+
+}
+
+#wheatRightTop{
+    
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    background-color: pink;
+
+}
+
+#wheatRightBottom{
+    
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    background-color: blue;
+
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+#uwaterloo{
+
+    font-family: sans-serif;
+    background-color: green;
+    height: 10%;
+
+}
+
+#uwaterlooImage{
+
+    float: left;
+    height: 100%;
+    width: 10%;
+
+}
+
+#uwaterlooLeft{
+
+    display: flex;
+    align-items: center;
+    float: left;
+    font-size: 40px;
+    height: 100%;
+    background-color: brown;
+    width: 60%;
+
+}
+
+#uwaterlooRight{
+
+    float: left;
+    height: 100%;
+    width: 30%;
+    background-color: pink;
+    font-size: 20px;
+
+}
+
+#uwaterlooRightTop{
+    
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    background-color: pink;
+
+}
+
+#uwaterlooRightBottom{
+    
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    background-color: blue;
+
+}
