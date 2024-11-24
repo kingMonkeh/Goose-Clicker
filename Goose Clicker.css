@@ -73,6 +73,118 @@
 
 }
 
+#settingsOverlay{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    visibility: hidden;
+
+}
+
+#settingsBox{
+
+    width: 30%;
+    height: 70%;
+    background-color: peachpuff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+
+}
+
+#settingsClose{
+
+    width: 10%;
+    aspect-ratio: 1/1;
+    background-color: red;
+
+}
+
+#resetButton{
+
+    width: 70%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+
+}
+
+#resetOverlay{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    visibility: hidden;
+
+}
+
+#resetBox{
+
+    height: 30%;
+    width: 60%;
+    background-color: brown;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+
+}
+
+#twoFactor{
+
+    height: 20%;
+    width: 80%;
+
+}
+
+#resetClose{
+
+    height: 100%;
+    width: 50%;
+    background-color: red;
+
+}
+
+#resetConfirm{
+
+    height: 100%;
+    width: 50%;
+    background-color: green;
+
+}
+
+#resetError{
+
+    width: 30%;
+    height: 10%;
+    background-color: red;
+    position: absolute;
+    top: 5%;
+    left: 35%;
+    opacity: 0%;
+
+}
+
+/* MAIN GAME */
+
 #main{
 
     position: absolute;
@@ -81,6 +193,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    color: rgb(89, 21, 9);
 
 }
 
@@ -88,39 +201,52 @@
 
     width: 33.33%;
     height: 100%;
-    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(253, 188, 110);
 
 }
 
 #gooseCount{
 
-    float: left;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 36px;
     font-family: sans-serif;
     width: 100%;
     height: 10%;
-    background-color: aliceblue;
+    box-sizing: border-box;
+    border-width: 6px 6px 3px 6px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
 
 }
 
 #goosePerSecond{
 
-    float: left;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 30px;
     font-family: sans-serif;
     width: 100%;
     height: 10%;
-    background-color: rebeccapurple;
+    box-sizing: border-box;
+    border-width: 3px 6px 3px 6px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
 
 }
 
 #mainGoose{
 
-    float: left;
     width: 100%;
     height: 80%;
+    box-sizing: border-box;
+    border-width: 3px 6px 6px 6px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
 
 }
 
@@ -128,7 +254,6 @@
 
     width: 33.33%;
     height: 100%;
-    background-color: red;
     display: flex;
     flex-direction: column;
 
@@ -145,18 +270,40 @@
 
 #stats{
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    color: rgb(89, 21, 9);
+    font-weight: bold;
     height: 100%;
-    background-color: aquamarine;
+    background-color: rgb(253, 188, 110);
+    box-sizing: border-box;
+    border-width: 6px 6px 3px 0px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
     aspect-ratio: 1/1;
     flex-shrink: 0;
 
 }
 
-#tips{
+#news{
 
     height: 100%;
-    background-color: brown;
     width: 100%;
+    font-size: 2vmin;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(253, 188, 110);
+    color: rgb(89, 21, 9);
+    box-sizing: border-box;
+    border-width: 6px 0px 3px 0px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
 
 }
 
@@ -164,28 +311,68 @@
 
     height: 100%;
     aspect-ratio: 1/1;
-    background-color: blue;
+    box-sizing: border-box;
+    border-width: 6px 0px 3px 6px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
     flex-shrink: 0;
-
-}
-
-#artifact{
-
-    float: left;
-    width: 100%;
-    height: 70%;
-    background-color: rgb(47, 31, 138);
 
 }
 
 #artifactTitle{
 
     width: 100%;
-    height: 15%;
-    text-align: center;
-    font-size: 40px;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
     font-family: sans-serif;
-    background-color: aqua;
+    font-weight: bold;
+    background-color: rgb(253, 188, 110);
+    color: rgb(89, 21, 9);
+    box-sizing: border-box;
+    border-width: 3px 0px 3px 0px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
+
+}
+
+#artifactBox{
+
+    width: 100%;
+    height: 65%;
+    background-color: rgb(89, 21, 9);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.artifactRow{
+
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-width: 3px 0px 3px 0px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
+
+}
+
+.artifact{
+
+    width: 15%;
+    aspect-ratio: 1/1;
+
+}
+
+#fertilizer{
+
+}
+
+#shinyCoating{
 
 }
 
@@ -196,19 +383,28 @@
     text-align: center;
     font-size: 25px;
     font-family: sans-serif;
-    background-color: aqua;
+    background-color: rgb(253, 188, 110);
+    color: rgb(89, 21, 9);
+    box-sizing: border-box;
+    border-width: 3px 0px 3px 0px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
 
 }
 
 #extra{
 
-    float: left;
     width: 100%;
     height: 15%;
     display: flex;
     justify-content: space-evenly;
-    background-color: blueviolet;
     align-items: center;
+    background-color: rgb(253, 188, 110);
+    color: rgb(89, 21, 9);
+    box-sizing: border-box;
+    border-width: 3px 0px 6px 0px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
 
 }
 
@@ -221,18 +417,13 @@
 }
 
 #prestigeButton{
-
-    width: calc(100%/6);
-    aspect-ratio: 1/1;
     background-color: black;
-
 }
 
 #right{
 
     width: 33.33%;
     height: 100%;
-    background-color: aquamarine;
     display: flex;
     flex-direction: column;
 
@@ -242,170 +433,130 @@
 
     height: 10%;
     width: 100%;
-    text-align: center;
-    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: sans-serif;
-    background-color: blueviolet;
-
+    font-weight: bold;
+    background-color: rgb(253, 188, 110);
+    box-sizing: border-box;
+    border-width: 6px 6px 3px 6px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
+    color: rgb(89, 21, 9);
+    font-size: 40px;
+    
 }
 
-#grass{
+.item{
 
-    float: left;
     font-family: sans-serif;
-    background-color: green;
+    background-color: rgb(253, 188, 110);
+    color: rgb(89, 21, 9);
+    box-sizing: border-box;
+    border-width: 3px 6px 3px 6px;
+    border-style: solid;
+    border-color: rgb(167, 80, 5);
     height: 10%;
     width: 100%;
     position: relative;
     display: flex;
-    flex-direction: row;
 
 }
 
-#grassTooltip{
+.itemImage{
+
+    height: 100%;
+    aspect-ratio: 1/1;
+
+}
+
+.itemMain{
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+}
+
+.itemTitle{
+
+    font-size: 30px;
+    height: 60%;
+    width: 100%;
+
+}
+
+.itemPrice{
+
+    display: flex;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+    font-size: 12px;
+
+}
+
+.itemOwned{
+
+    display: flex;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+    font-size: 12px;
+
+}
+
+.itemTooltip{
 
     visibility: hidden;
     position: absolute;
-    background-color: darkred;
-    color: white;
-    right: 103%;
+    box-sizing: border-box;
+    background-color: rgb(253, 188, 110);
+    color: rgb(86, 22, 12);
+    right: 102%;
     width: 45%;
     font-family: sans-serif;
-    border: solid brown;
+    border-style: solid;
+    border-width: 4px 4px 4px 4px;
+    border-color: rgb(167, 80, 5);
 
 }
 
-#grass:hover #grassTooltip{
-
+.item:hover .itemTooltip{
     visibility: visible;
-
 }
 
-#grassImage{
-
-    float: left;
-    height: 100%;
-
-}
-
-#grassLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#grassRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
+.itemTooltipMainText{
     font-size: 20px;
-    flex-shrink: 0;
-
 }
 
-#grassRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
+.itemTooltipLittleText{
+    font-size: 10px;
 }
 
-#grassRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#grass{}
+#grassTooltip{}
+#grassImage{}
+#grassMain{}
+#grassTitle{}
+#grassPrice{}
+#grassOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-#wheat{
+#wheat{}
 
-    float: left;
-    width: 100%;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    display: flex;
-
-}
-
-#wheatImage{
-
-    float: left;
-    height: 100%;
-
-}
-
-#wheatLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#wheatRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#wheatRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#wheatRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#wheatImage{}
+#wheatMain{}
+#wheatTitle{}
+#wheatPrice{}
+#wheatOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-#gooseStatue{
-
-    float: left;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    width: 100%;
-    display: flex;
-
-}
+#gooseStatue{}
 
 #gooseStatueImage{
 
@@ -414,61 +565,14 @@
 
 }
 
-#gooseStatueLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#gooseStatueRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#gooseStatueRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#gooseStatueRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#gooseStatueMain{}
+#gooseStatueTitle{}
+#gooseStatuePrice{}
+#gooseStatueOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-#gooseNest{
-
-    float: left;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    width: 100%;
-    display: flex;
-
-}
+#gooseNest{}
 
 #gooseNestImage{
 
@@ -477,61 +581,14 @@
 
 }
 
-#gooseNestLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#gooseNestRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#gooseNestRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#gooseNestRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#gooseNestMain{}
+#gooseNestTitle{}
+#gooseNestPrice{}
+#gooseNestOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-#uwaterloo{
-
-    float: left;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    width: 100%;
-    display: flex;
-
-}
+#uwaterloo{}
 
 #uwaterlooImage{
 
@@ -540,61 +597,14 @@
 
 }
 
-#uwaterlooLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#uwaterlooRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#uwaterlooRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#uwaterlooRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#uwaterlooMain{}
+#uwaterlooTitle{}
+#uwaterlooPrice{}
+#uwaterlooOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-#gooseTemple{
-
-    float: left;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    width: 100%;
-    display: flex;
-
-}
+#gooseTemple{}
 
 #gooseTempleImage{
 
@@ -603,61 +613,14 @@
 
 }
 
-#gooseTempleLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#gooseTempleRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#gooseTempleRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#gooseTempleRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#gooseTempleMain{}
+#gooseTempleTitle{}
+#gooseTemplePrice{}
+#gooseTempleOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-#gooseMagnet{
-
-    float: left;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    width: 100%;
-    display: flex;
-
-}
+#gooseMagnet{}
 
 #gooseMagnetImage{
 
@@ -666,172 +629,32 @@
 
 }
 
-#gooseMagnetLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#gooseMagnetRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#gooseMagnetRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#gooseMagnetRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#gooseMagnetMain{}
+#gooseMagnetTitle{}
+#gooseMagnetPrice{}
+#gooseMagnetOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-#gooseLab{
+#gooseLab{}
 
-    float: left;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    width: 100%;
-    display: flex;
-
-}
-
-#gooseLabImage{
-
-    float: left;
-    height: 100%;
-
-}
-
-#gooseLabLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#gooseLabRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#gooseLabRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#gooseLabRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
+#gooseLabImage{}
+#gooseLabMain{}
+#gooseLabTitle{}
+#gooseLabPrice{}
+#gooseLabOwned{}
 
 /*------------------------------------------------------------------------------------------------------------*/
 
 #portal{
-
-    float: left;
-    font-family: sans-serif;
-    background-color: green;
-    height: 10%;
-    width: 100%;
-    display: flex;
-
+    border-bottom-width: 6px;
 }
 
-#portalImage{
-
-    float: left;
-    height: 100%;
-
+#portalTooltip{
+    bottom: 0%;
 }
-
-#portalLeft{
-
-    display: flex;
-    align-items: center;
-    float: left;
-    font-size: 40px;
-    height: 100%;
-    background-color: brown;
-    width: 60%;
-
-}
-
-#portalRight{
-
-    float: left;
-    height: 100%;
-    width: 30%;
-    background-color: pink;
-    font-size: 20px;
-    flex-shrink: 0;
-
-}
-
-#portalRightTop{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: pink;
-
-}
-
-#portalRightBottom{
-    
-    display: flex;
-    align-items: center;
-    height: 50%;
-    width: 100%;
-    background-color: blue;
-
-}
-
+#portalImage{}
+#portalMain{}
+#portalTitle{}
+#portalPrice{}
+#portalOwned{}
