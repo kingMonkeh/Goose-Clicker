@@ -37,12 +37,6 @@ function helper1(item){
 
 const htmlItems = [helper1("grass"), helper1("wheat"), helper1("gooseStatue"), helper1("gooseNest"), helper1("uwaterloo"), helper1("gooseTemple"), helper1("gooseMagnet"), helper1("gooseLab"), helper1("portal")];
 
-//helper2 takes in itemLeft, and resizes to fit with itemImage
-function helper2(left, image){
-    left.style.width = "70%";
-    left.style.width = String(left.offsetWidth - image.offsetWidth) + "px";
-}
-
 //Initialize game, aka local save file
 function init(){
 
@@ -78,10 +72,12 @@ function init(){
 
 function reset(){
 
+    localStorage.clear();
     gooses = 0;
     multiplier = 1;
-    items = origItems.slice(); //slice to create different array, not reference to origItems
+    items = [...origItems]; //slice to create different array, not reference to origItems
 
+    artifactsOwned = new Map();
     for (let i = 0; i < items.length; i++){
         //Update html text
         htmlItems[i][1].innerHTML = "Price: " + items[i][1];
@@ -125,12 +121,9 @@ prestigeNo.addEventListener('click', function(){
 //Prestige
 const prestigeYes = document.getElementById("prestigeYes");
 prestigeYes.addEventListener('click', function(){
-    gooses = 0; //Reset geese
-    multiplier += 0.01; //Update multiplier
-    //Reset all items
-    for (let i = 0; i < items.length; i++){
-        items[i][0] = 0;
-    }
+    var multiplierCopy = multiplier.valueOf();
+    reset();
+    multiplier = multiplierCopy.valueOf();
     prestigeOverlay.style.visibility = "hidden";
 })
 
@@ -172,7 +165,6 @@ const resetConfirm = document.getElementById("resetConfirm");
 resetConfirm.addEventListener('click', function(){
     //SUCCESSFUL
     if (twoFactor.value === "RESET"){
-        localStorage.clear();
         reset();
         resetOverlay.style.visibility = "hidden";
         settingsOverlay.style.visibility = "hidden";
