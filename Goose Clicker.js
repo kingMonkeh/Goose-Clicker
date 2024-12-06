@@ -6,7 +6,7 @@ TO DO
 2. Round Geese (COMPLETE)
 5/2. News Station (COMPLETE)
 3. Add Artifacts
-4. Make Game Look Better
+4. Make Game Look Better 
 5. Stats
 6. Plinko
 7. Add goose click luckmaxx
@@ -19,13 +19,14 @@ inf. Learn React
 
 var gooses = 0;
 var multiplier = 1;
+var clickMultiplier = 1;
 var gooseThisSecond = 0; //number of geese produced this second
 
 //items = [[owned, price, produce], ...]
 var items = [[0, 10, 1], [0, 100, 10], [0, 1019, 111], [0, 10000, 1010], [0, 1000000, 12345], [0, 10000000, 123456], [0, 100000000, 1234567], [0, 1000000000, 12345678], [0, 10000000000, 123456789]];
 const origItems = [[0, 10, 1], [0, 100, 10], [0, 1019, 111], [0, 10000, 1010], [0, 1000000, 12345], [0, 10000000, 123456], [0, 100000000, 1234567], [0, 1000000000, 12345678], [0, 10000000000, 123456789]];
 
-var artifacts = ["fertilizer", "betterSeeds", "goldenWheatStrain", "babylonianIrrigationSystem", "shinyCoating", "featherInsulation", "geeseScholarship"];
+var artifacts = ["fertilizer", "betterSeeds", "goldenWheatStrain", "babylonianIrrigationSystem", "shinyCoating", "featherInsulation", "geeseScholarship", "gooseAngel", "superchargedPolarity", "cloningMachine", "click+", "click++", "click+++", "click++++", "click+++++", "petRock", "fourLeafClover", "magicScroll", "duck", "industrialRevolution", "kingGoose", "eggscalibur", "eagle", "babyGoose"];
 var artifactsOwned = new Map();
 
 //helper1: string -> [mainbox html, price html, owned html]
@@ -48,6 +49,9 @@ function init(){
 
     if (localStorage.getItem("multiplier") != null)
         multiplier = parseFloat(localStorage.getItem("multiplier"));
+
+    if (localStorage.getItem("clickMultiplier") != null)
+        clickMultiplier = parseFloat(localStorage.getItem("clickMultiplier"));
 
     for (let i = 0; i < items.length; i++){
         //Init items
@@ -75,10 +79,11 @@ function reset(){
     localStorage.clear();
     gooses = 0;
     multiplier = 1;
-    items = [...origItems]; //slice to create different array, not reference to origItems
+    clickMultiplier = 1;
+    artifactsOwned = new Map(); //make new map
 
-    artifactsOwned = new Map();
     for (let i = 0; i < items.length; i++){
+        items[i] = Array.from(origItems[i], (x) => x); //we are cloning array of arrays, we need to shallow copy each inner array
         //Update html text
         htmlItems[i][1].innerHTML = "Price: " + items[i][1];
         htmlItems[i][2].innerHTML = "Owned: " + items[i][0];
@@ -92,6 +97,38 @@ const mainGoose = document.getElementById("mainGoose");
 const gooseCount = document.getElementById("gooseCount");
 const goosePerSecond = document.getElementById("goosePerSecond");
 
+//On-click of goose, display geese gained
+function createClickGain(gained, x, y){
+    var clickGain = document.createElement("div");
+    clickGain.innerHTML = "+" + gained;
+    //Styling
+    clickGain.style.pointerEvents = "none"; //Allows user to click through the div, not supported on old browsers
+    clickGain.style.position = "absolute";
+    clickGain.style.left = x.toString() + "px";
+    clickGain.style.top = y.toString() + "px";
+    clickGain.style.fontFamily = "sans-serif";
+    clickGain.style.color = "rgb(89, 21, 9)";
+    document.body.appendChild(clickGain); //Append to document body
+    //Fading of text
+    var opacity = 100; //Initial opacity
+    var intervalID = setInterval(function(){
+        opacity--;
+        clickGain.style.opacity = opacity.toString() + "%";
+        clickGain.style.top = (y--).toString() + "px";
+        if (opacity == 0){
+            clearInterval(intervalID);
+        }
+    }, 25);
+}
+
+//Click on goose event
+mainGoose.addEventListener('click', function(event){
+    gooses += 1 * multiplier * clickMultiplier;
+    gooseThisSecond += 1 * multiplier * clickMultiplier;
+    gooseCount.innerHTML = Math.round(gooses) + " Geese";
+    createClickGain(1 * multiplier * clickMultiplier, event.x, event.y);
+});
+
 /////////////////////////////////////////////////////////////////
 //EXTRAS/////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -100,7 +137,7 @@ const goosePerSecond = document.getElementById("goosePerSecond");
 const chipmunk = document.getElementById("chipmunk");
 chipmunk.addEventListener('click', function(){
     for (let i = 0; i < 3; i++){
-        if (Math.random() >= 0.54) gooses *= 2;
+        if (Math.random() >= 0.55) gooses *= 2;
         else gooses *= 0.5;
         console.log(gooses);
     }
@@ -205,13 +242,6 @@ setInterval(function(){
     news.innerHTML = newsBank[Math.floor(newsBank.length * Math.random())];
 }, 15000);
 
-//Click on goose event
-mainGoose.addEventListener('click', function(){
-    gooses += 1 * multiplier;
-    gooseThisSecond += 1 * multiplier;
-    gooseCount.innerHTML = Math.round(gooses) + " Geese";
-});
-
 //ITEMS//
 
 for (let i = 0; i < htmlItems.length; i++){
@@ -232,14 +262,67 @@ for (let i = 0; i < htmlItems.length; i++){
 //NOTE: Artifacts are too specialized and randomized to be condensed into a class
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const fertilizer = document.getElementById("fertilizer");
-fertilizer.addEventListener('click', function(){
-    console.log("clicked");
-    if (gooses >= 1000 && artifactsOwned.get("fertilizer") != "true"){
-        gooses -= 1000;
-        artifactsOwned.set("fertilizer", "true");
-        items[0][2] *= 2;
+function canBuy(price, name){
+    var can = false;
+    if (gooses >= price && artifactsOwned.get(name) != "true"){
+        gooses -= price;
+        artifactsOwned.set(name, "true");
+        can = true;
     }
+    return can;
+}
+
+function createArtifactPurchase(name, price, upgradeFunction){
+    var artifactHTML = document.getElementById(name);
+    artifactHTML.addEventListener('click', function(){
+        if (canBuy(price, name)){
+            upgradeFunction();
+        }
+    });
+}
+
+//Fertilizer
+createArtifactPurchase("fertilizer", 1000, function(){
+    items[0][2] *= 2;    
+});
+
+//Better Seeds
+createArtifactPurchase("betterSeeds", 2500, function(){
+    items[0][2] *= 2;
+});
+
+//Golden Wheat Strain
+createArtifactPurchase("goldenWheatStrain", 5000, function(){
+    items[1][2] *= 2;
+});
+
+//Babylonian Irrigation System
+createArtifactPurchase("babylonianIrrigationSystem", 10000, function(){
+    items[1][2] *= 2;
+});
+
+//shinyCoating
+createArtifactPurchase("shinyCoating", 25000, function(){
+    items[2][2] *= 2;
+})
+
+//Feather Insulation
+createArtifactPurchase("featherInsulation", 100000, function(){
+    items[3][2] *= 2;
+});
+
+///
+///
+///
+
+//click+
+createArtifactPurchase("click+", 100, function(){
+    clickMultiplier *= 2;
+});
+
+//click++
+createArtifactPurchase("click++", 1000, function(){
+    clickMultiplier *= 2;
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -269,6 +352,7 @@ setInterval(function(){
 
     localStorage.setItem("gooses", gooses);
     localStorage.setItem("multiplier", multiplier);
+    localStorage.setItem("clickMultiplier", clickMultiplier);
 
     for (let i = 0; i < items.length; i++){
         for (let j = 0; j < 3; j++){
