@@ -7,11 +7,50 @@
         <title>Goose Clicker</title>
         <link rel = "stylesheet" href = "Goose Clicker.css">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
     </head>
 
     <body>
 
-        <div id = "prestigeOverlay">
+        <div id = "patchNotesOverlay" class = "overlay">
+
+            <div id = "patchNotes">
+
+                <div id = "patchNotesClose" style = "height: 5%; width: 100%; display: flex; flex-direction: row-reverse;">
+                    <img src = "images/x.png" style = "height: 150%;">
+                </div>
+
+                <div style = "height: 20%; font-size: 10vh;">
+                    Welcome Back!
+                </div>
+
+                <div style = "height: 10%; font-size: 6vh;">
+                    Patch Notes
+                </div>
+
+                <div style = "height: 45%; font-size: 6vh">
+
+                    -All artifacts are complete <br>
+                    -Changed font to VT323 <br>
+                    -Geese gained from click is now shown <br>
+                    -Indicators to show whether or not item is purchasable
+
+                </div>
+
+                <div style = "height: 20%; font-size: 6vh">
+
+                    Made with love &lt;3 by Hy Lac
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id = "prestigeOverlay" class = "overlay">
 
             <div id = "prestigeWarning">
 
@@ -32,7 +71,7 @@
 
         </div>
 
-        <div id = "settingsOverlay">
+        <div id = "settingsOverlay" class = "overlay">
 
             <div id = "settingsBox">
 
@@ -47,7 +86,7 @@
 
         </div>
 
-        <div id = "resetOverlay">
+        <div id = "resetOverlay" class = "overlay">
 
             <div id = "resetBox">
 
@@ -105,6 +144,7 @@
                     <div class = "artifactRow">
 
                         <div id = "fertilizer" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "fertilizerTooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Fertilizer</div>
                                 <div class = "artifactTooltipPrice">1,000 Geese</div>
@@ -114,6 +154,7 @@
                         </div>
 
                         <div id = "betterSeeds" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "betterSeedsTooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Better Seeds</div>
                                 <div class = "artifactTooltipPrice">2,500 Geese</div>
@@ -123,6 +164,7 @@
                         </div>
 
                         <div id = "goldenWheatStrain" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "goldenWheatStrainTooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Golden Wheat Strain</div>
                                 <div class = "artifactTooltipPrice">5,000 Geese</div>
@@ -132,6 +174,7 @@
                         </div>
 
                         <div id = "babylonianIrrigationSystem" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "babylonianIrrigationSystemTooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Babylonian Irrigation System</div>
                                 <div class = "artifactTooltipPrice">10,000 Geese</div>
@@ -141,6 +184,7 @@
                         </div>
 
                         <div id = "shinyCoating" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "shinyCoatingTooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Shiny Coating</div>
                                 <div class = "artifactTooltipPrice">25,000 Geese</div>
@@ -154,6 +198,7 @@
                     <div class = "artifactRow">
 
                         <div id = "featherInsulation" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "featherInsulationTooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Feather Insulation</div>
                                 <div class = "artifactTooltipPrice">100,000 Geese</div>
@@ -163,19 +208,43 @@
                         </div>
 
                         <div id = "geeseScholarship" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "geeseScholarshipTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Geese Scholarship</div>
+                                <div class = "artifactTooltipPrice">1,000,000 Geese</div>
+                                <div class = "artifactTooltipDesc">Diamond in the rough! Doubles UW Campus efficiency.</div>
+                            </div>
+                            <img src = "images/geeseScholarship.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "gooseAngel" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "gooseAngelTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Goose Angel</div>
+                                <div class = "artifactTooltipPrice">77,777,777 Geese</div>
+                                <div class = "artifactTooltipDesc">An angel blesses the temple! Doubles Goose Temple efficiency. 7x geese gained from mouse clicks.</div>
+                            </div>
+                            <img src = "images/gooseAngel.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "superchargedPolarity" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "superchargedPolarityTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Supercharged Polarity</div>
+                                <div class = "artifactTooltipPrice">500,000,000 Geese</div>
+                                <div class = "artifactTooltipDesc">Supercharge those magnets! Doubles Goose Magnet efficiency.</div>
+                            </div>
+                            <img src = "images/superchargedPolarity.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "cloningMachine" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "cloningMachineTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Cloning Machine</div>
+                                <div class = "artifactTooltipPrice">3,000,000,000 Geese</div>
+                                <div class = "artifactTooltipDesc">State of the art cloning machines! Doubles Goose Lab efficiency.</div>
+                            </div>
+                            <img src = "images/cloningMachine.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                     </div>
@@ -183,6 +252,7 @@
                     <div class = "artifactRow">
 
                         <div id = "click+" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "click+Tooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Click+</div>
                                 <div class = "artifactTooltipPrice">100 Geese</div>
@@ -191,6 +261,7 @@
                             <img src = "images/click+.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
                         <div id = "click++" class = "artifact">
+                            <div class = "artifactMask"></div>
                             <div id = "click++Tooltip" class = "artifactTooltip">
                                 <div class = "artifactTooltipTitle">Click++</div>
                                 <div class = "artifactTooltipPrice">1000 Geese</div>
@@ -199,13 +270,31 @@
                             <img src = "images/click++.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
                         <div id = "click+++" class = "artifact">
-                            <img src = "images/fertilizer.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "click+++Tooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Click+++</div>
+                                <div class = "artifactTooltipPrice">10000 Geese</div>
+                                <div class = "artifactTooltipDesc">Another + wouldn't hurt! Mouse clicks are quadruply as efficient.</div>
+                            </div>
+                            <img src = "images/click+++.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
                         <div id = "click++++" class = "artifact">
-                            <img src = "images/fertilizer.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "click++++Tooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Click++++</div>
+                                <div class = "artifactTooltipPrice">100000 Geese</div>
+                                <div class = "artifactTooltipDesc">"Now I am become Death, the Destroyer of Worlds" Mouse clicks are octuply as efficient.</div>
+                            </div>
+                            <img src = "images/click++++.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
                         <div id = "click+++++" class = "artifact">
-                            <img src = "images/fertilizer.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "click+++++Tooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Click+++++</div>
+                                <div class = "artifactTooltipPrice">1000000 Geese</div>
+                                <div class = "artifactTooltipDesc">"Glorious evolution!" (Geese gained from click)^e.</div>
+                            </div>
+                            <img src = "images/click+++++.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                     </div>
@@ -213,23 +302,53 @@
                     <div class = "artifactRow">
 
                         <div id = "petRock" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "petRockTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Pet Rock</div>
+                                <div class = "artifactTooltipPrice">100 Geese</div>
+                                <div class = "artifactTooltipDesc">A pet rock. Might help you...</div>
+                            </div>
+                            <img src = "images/petRock.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "fourLeafClover" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "fourLeafCloverTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Four Leaf Clover</div>
+                                <div class = "artifactTooltipPrice">8,888 Geese</div>
+                                <div class = "artifactTooltipDesc">Truly lucky! 8 is the luckiest number!</div>
+                            </div>
+                            <img src = "images/fourLeafClover.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "magicScroll" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "magicScrollTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Magic Scroll</div>
+                                <div class = "artifactTooltipPrice">11,235,813,213 Geese</div>
+                                <div class = "artifactTooltipDesc">Doubles the efficiency of Portal</div>
+                            </div>
+                            <img src = "images/magicScroll.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "duck" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "duckTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Duck</div>
+                                <div class = "artifactTooltipPrice">1 Goose</div>
+                                <div class = "artifactTooltipDesc">Not a goose?</div>
+                            </div>
+                            <img src = "images/duck.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "industrialRevolution" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "industrialRevolutionTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Industrial Revolution</div>
+                                <div class = "artifactTooltipPrice">12,345,678,910 Goose</div>
+                                <div class = "artifactTooltipDesc">All items are twice as efficient!</div>
+                            </div>
+                            <img src = "images/industrialRevolution.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                     </div>
@@ -237,22 +356,54 @@
                     <div class = "artifactRow">
 
                         <div id = "kingGoose" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "kingGooseTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">King Goose</div>
+                                <div class = "artifactTooltipPrice">99,999,999,999 Goose</div>
+                                <div class = "artifactTooltipDesc">Everything is twice as efficient! Effects doubled if Eggscalibur is owned.</div>
+                            </div>
+                            <img src = "images/kingGoose.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "eggscalibur" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "eggscaliburTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Eggscalibur</div>
+                                <div class = "artifactTooltipPrice">99,999,999,999 Goose</div>
+                                <div class = "artifactTooltipDesc">Only the chosen one can wield it! Doubles King Goose power. Sword pattern on click.</div>
+                            </div>
+                            <img src = "images/eggscalibur.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "eagle" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "eagleTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Eagle</div>
+                                <div class = "artifactTooltipPrice">9,999,999,999 Goose</div>
+                                <div class = "artifactTooltipDesc">Freedom! Silicon valley makes UW Campus 12345x more efficient</div>
+                            </div>
+                            <img src = "images/eagle.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
                         <div id = "babyGoose" class = "artifact">
-                            <img src = "images/cloth.webp" style = "height: 100%; width: 100%; float: left;">
+                            <div class = "artifactMask"></div>
+                            <div id = "babyGooseTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Baby Goose</div>
+                                <div class = "artifactTooltipPrice">9,999,999,999 Goose</div>
+                                <div class = "artifactTooltipDesc">Cutie! 1.5x all geese gained.</div>
+                            </div>
+                            <img src = "images/babyGoose.png" style = "height: 100%; width: 100%; float: left;">
                         </div>
 
-                        <div id = "prestigeButton" class = "artifact"></div>
+                        <div id = "prestigeButton" class = "artifact">
+                            <div class = "artifactMask"></div>
+                            <div id = "prestigeTooltip" class = "artifactTooltip">
+                                <div class = "artifactTooltipTitle">Prestige</div>
+                                <div class = "artifactTooltipPrice">999,999,999,999,999 Goose</div>
+                                <div class = "artifactTooltipDesc">The end.</div>
+                            </div>
+                            <img src = "images/prestige.png" style = "height: 100%; width: 100%; float: left;">
+                        </div>
 
                     </div>
 
@@ -275,6 +426,8 @@
                 <div id = "shopBanner">SHOP</div>
 
                 <div id = "grass" class = "item">
+
+                    <div class = "itemMask"></div>
 
                     <div id = "grassTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">Geese love grass!</div>
@@ -299,6 +452,8 @@
 
                 <div id = "wheat" class = "item">
 
+                    <div class = "itemMask"></div>
+
                     <div id = "wheatTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">Geese love wheat! Probably...</div>
                         <div class = "itemTooltipLittleText">Each Wheat produces 10 geese per second.</div> 
@@ -321,6 +476,8 @@
                 <!--------------------------------------------------------------------------------------------->
 
                 <div id = "gooseStatue" class = "item">
+
+                    <div class = "itemMask"></div>
 
                     <div id = "gooseStatueTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">The geese are mesmerized by their statue!</div>
@@ -347,6 +504,8 @@
 
                 <div id = "gooseNest" class = "item">
 
+                    <div class = "itemMask"></div>
+
                     <div id = "gooseNestTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">The geese are attracted by a new home!</div>
                         <div class = "itemTooltipLittleText">Each Goose Nest produces 1010 geese per second.</div> 
@@ -371,6 +530,8 @@
                 <!--------------------------------------------------------------------------------------------->
                 
                 <div id = "uwaterloo" class = "item">
+
+                    <div class = "itemMask"></div>
 
                     <div id = "uwaterlooTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">UW, the true home of all geese!</div>
@@ -397,6 +558,8 @@
 
                 <div id = "gooseTemple" class = "item">
 
+                    <div class = "itemMask"></div>
+
                     <div id = "gooseTempleTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">Geese are attracted by this great religious institution!</div>
                         <div class = "itemTooltipLittleText">Each Goose Temple produces 123456 geese per second.</div> 
@@ -411,7 +574,7 @@
                     <div id = "gooseTempleMain" class = "itemMain">
 
                         <div id = "gooseTempleTitle" class = "itemTitle">Goose Temple</div>
-                        <div id = "gooseTemplePrice" class = "itemPrice">Price: 7777777</div>
+                        <div id = "gooseTemplePrice" class = "itemPrice">Price: 10000000</div>
                         <div id = "gooseTempleOwned" class = "itemOwned">Owned: 0</div>
 
                     </div>
@@ -421,6 +584,8 @@
                 <!--------------------------------------------------------------------------------------------->
 
                 <div id = "gooseMagnet" class = "item">
+
+                    <div class = "itemMask"></div>
 
                     <div id = "gooseMagnetTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">Geese are pulled towards the magnet!</div>
@@ -436,7 +601,7 @@
                     <div id = "gooseMagnetMain" class = "itemMain">
 
                         <div id = "gooseMagnetTitle" class = "itemTitle">Goose Magnet</div>
-                        <div id = "gooseMagnetPrice" class = "itemPrice">Price: 7777777</div>
+                        <div id = "gooseMagnetPrice" class = "itemPrice">Price: 100000000</div>
                         <div id = "gooseMagnetOwned" class = "itemOwned">Owned: 0</div>
 
                     </div>
@@ -447,8 +612,10 @@
 
                 <div id = "gooseLab" class = "item">
 
+                    <div class = "itemMask"></div>
+
                     <div id = "gooseLabTooltip" class = "itemTooltip">
-                        <div class = "itemTooltipMainText">Geese are cloned in the lab!</div>
+                        <div class = "itemTooltipMainText">Lab grown geese!</div>
                         <div class = "itemTooltipLittleText">Each Goose Lab produces 12345678 geese per second.</div> 
                     </div>
 
@@ -461,7 +628,7 @@
                     <div id = "gooseLabMain" class = "gooseLabMain">
 
                         <div id = "gooseLabTitle" class = "itemTitle">Goose Lab</div>
-                        <div id = "gooseLabPrice" class = "itemPrice">Price: 7777777</div>
+                        <div id = "gooseLabPrice" class = "itemPrice">Price: 1000000000</div>
                         <div id = "gooseLabOwned" class = "itemOwned">Owned: 0</div>
 
                     </div>
@@ -471,6 +638,8 @@
                 <!--------------------------------------------------------------------------------------------->
 
                 <div id = "portal" class = "item">
+
+                    <div class = "itemMask"></div>
 
                     <div id = "portalTooltip" class = "itemTooltip">
                         <div class = "itemTooltipMainText">Tap into the multiverse!</div>
@@ -486,7 +655,7 @@
                     <div id = "portalMain" class = "itemMain">
 
                         <div id = "portalTitle" class = "itemTitle">Portal</div>
-                        <div id = "portalPrice" class = "itemPrice">Price: 7777777</div>
+                        <div id = "portalPrice" class = "itemPrice">Price: 10000000000</div>
                         <div id = "portalOwned" class = "itemOwned">Owned: 0</div>
 
                     </div>

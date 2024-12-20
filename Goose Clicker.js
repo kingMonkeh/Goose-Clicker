@@ -20,20 +20,22 @@ inf. Learn React
 var gooses = 0;
 var multiplier = 1;
 var clickMultiplier = 1;
+var clickExponent = 1;
 var gooseThisSecond = 0; //number of geese produced this second
 
 //items = [[owned, price, produce], ...]
 var items = [[0, 10, 1], [0, 100, 10], [0, 1019, 111], [0, 10000, 1010], [0, 1000000, 12345], [0, 10000000, 123456], [0, 100000000, 1234567], [0, 1000000000, 12345678], [0, 10000000000, 123456789]];
 const origItems = [[0, 10, 1], [0, 100, 10], [0, 1019, 111], [0, 10000, 1010], [0, 1000000, 12345], [0, 10000000, 123456], [0, 100000000, 1234567], [0, 1000000000, 12345678], [0, 10000000000, 123456789]];
 
-var artifacts = ["fertilizer", "betterSeeds", "goldenWheatStrain", "babylonianIrrigationSystem", "shinyCoating", "featherInsulation", "geeseScholarship", "gooseAngel", "superchargedPolarity", "cloningMachine", "click+", "click++", "click+++", "click++++", "click+++++", "petRock", "fourLeafClover", "magicScroll", "duck", "industrialRevolution", "kingGoose", "eggscalibur", "eagle", "babyGoose"];
+var artifacts = ["fertilizer", "betterSeeds", "goldenWheatStrain", "babylonianIrrigationSystem", "shinyCoating", "featherInsulation", "geeseScholarship", "gooseAngel", "superchargedPolarity", "cloningMachine", "click+", "click++", "click+++", "click++++", "click+++++", "petRock", "fourLeafClover", "magicScroll", "duck", "industrialRevolution", "kingGoose", "eggscalibur", "eagle", "babyGoose", "prestigeButton"];
+var artifactPrice = [1000, 2500, 5000, 10000, 25000, 100000, 1000000, 77777777, 500000000, 3000000000, 100, 1000, 10000, 100000, 1000000, 100, 8888, 11235813213, 1, 12345678910, 99999999999, 99999999999, 9999999999, 9999999999, 999999999999999];
 var artifactsOwned = new Map();
 
 //helper1: string -> [mainbox html, price html, owned html]
 //let document.getElementById() = d.gEBI()
-//helper1("grass") -> [d.gEBI("grass"), d.gEBI("grassRightTop", d.gEBI("grassRightBottom"), d.gEBI("grassLeft"), d.gEBI("grassImage")]
+//helper1("grass") -> [d.gEBI("grass"), d.gEBI("grassPrice", d.gEBI("grassOwned"), d.gEBI("grassImage"), itemMask]
 function helper1(item){
-    return [document.getElementById(item), document.getElementById(item + "Price"), document.getElementById(item + "Owned"), document.getElementById(item + "Image")];
+    return [document.getElementById(item), document.getElementById(item + "Price"), document.getElementById(item + "Owned"), document.getElementById(item + "Image"), document.getElementById(item).firstElementChild];
 }
 
 const htmlItems = [helper1("grass"), helper1("wheat"), helper1("gooseStatue"), helper1("gooseNest"), helper1("uwaterloo"), helper1("gooseTemple"), helper1("gooseMagnet"), helper1("gooseLab"), helper1("portal")];
@@ -52,6 +54,9 @@ function init(){
 
     if (localStorage.getItem("clickMultiplier") != null)
         clickMultiplier = parseFloat(localStorage.getItem("clickMultiplier"));
+
+    if (localStorage.getItem("clickExponent") != null)
+        clickExponent = parseFloat(localStorage.getItem("clickExponent"));
 
     for (let i = 0; i < items.length; i++){
         //Init items
@@ -80,6 +85,7 @@ function reset(){
     gooses = 0;
     multiplier = 1;
     clickMultiplier = 1;
+    clickExponent = 1;
     artifactsOwned = new Map(); //make new map
 
     for (let i = 0; i < items.length; i++){
@@ -91,6 +97,13 @@ function reset(){
 
     console.log("RESET");
 
+}
+
+function kingGooseEggscalibur(){
+    if (artifactsOwned.get("kingGoose") == 'true' && artifactsOwned.get("eggscalibur") == 'true'){
+        return 2;
+    }
+    return 1;
 }
 
 const mainGoose = document.getElementById("mainGoose");
@@ -106,27 +119,49 @@ function createClickGain(gained, x, y){
     clickGain.style.position = "absolute";
     clickGain.style.left = x.toString() + "px";
     clickGain.style.top = y.toString() + "px";
-    clickGain.style.fontFamily = "sans-serif";
+    clickGain.style.fontFamily = "'VT323', sans-serif";
     clickGain.style.color = "rgb(89, 21, 9)";
     document.body.appendChild(clickGain); //Append to document body
     //Fading of text
     var opacity = 100; //Initial opacity
     var intervalID = setInterval(function(){
-        opacity--;
+        opacity -= 2;
         clickGain.style.opacity = opacity.toString() + "%";
         clickGain.style.top = (y--).toString() + "px";
         if (opacity == 0){
             clearInterval(intervalID);
+            clickGain.remove();
         }
     }, 25);
 }
 
 //Click on goose event
 mainGoose.addEventListener('click', function(event){
-    gooses += 1 * multiplier * clickMultiplier;
-    gooseThisSecond += 1 * multiplier * clickMultiplier;
+    var gain = Math.pow(1 * multiplier * clickMultiplier * kingGooseEggscalibur(), clickExponent);
+    //Four leaf clover effect
+    if (artifactsOwned.get("fourLeafClover") == 'true'){
+        if (Math.random() < 0.088){
+            gain *= 8;
+        }
+    }
+    var displayGain = Math.round(gain.valueOf());
+    gooses += gain;
+    gooseThisSecond += displayGain;
+    createClickGain(displayGain, event.x, event.y);
+    //Draw sword pattern if we own eggscalibur
+    if (artifactsOwned.get("eggscalibur") == 'true'){
+        gooses += gain * 8;
+        gooseThisSecond += gain * 8;
+        createClickGain(displayGain, event.x - 10, event.y);
+        createClickGain(displayGain, event.x + 10, event.y);
+        createClickGain(displayGain, event.x, event.y + 10);
+        createClickGain(displayGain, event.x, event.y + 20);
+        createClickGain(displayGain, event.x, event.y - 10);
+        createClickGain(displayGain, event.x, event.y - 20);
+        createClickGain(displayGain, event.x, event.y - 30);
+        createClickGain(displayGain, event.x, event.y - 40);
+    }
     gooseCount.innerHTML = Math.round(gooses) + " Geese";
-    createClickGain(1 * multiplier * clickMultiplier, event.x, event.y);
 });
 
 /////////////////////////////////////////////////////////////////
@@ -164,7 +199,9 @@ prestigeYes.addEventListener('click', function(){
     prestigeOverlay.style.visibility = "hidden";
 })
 
-//Settings//
+////////////////////////////////////////////////////////////////////
+//Settings//////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 const settingsOverlay = document.getElementById("settingsOverlay");
 
@@ -229,7 +266,14 @@ resetConfirm.addEventListener('click', function(){
     twoFactor.value = "";
 });
 
-//Settings END//
+//////////////////////////////////////////////////////////////////////////////
+//Patch Notes/////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Close patch notes when X button is clicked
+document.getElementById("patchNotesClose").addEventListener('click', function(){
+    document.getElementById("patchNotesOverlay").style.visibility = "hidden";
+});
 
 //////////
 //NEWS////
@@ -242,7 +286,9 @@ setInterval(function(){
     news.innerHTML = newsBank[Math.floor(newsBank.length * Math.random())];
 }, 15000);
 
-//ITEMS//
+/////////////////////////////////////////////////////////////////////////////
+//ITEMS//////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
 for (let i = 0; i < htmlItems.length; i++){
     htmlItems[i][0].addEventListener('click', function(){
@@ -282,33 +328,54 @@ function createArtifactPurchase(name, price, upgradeFunction){
 }
 
 //Fertilizer
-createArtifactPurchase("fertilizer", 1000, function(){
+createArtifactPurchase("fertilizer", artifactPrice[0], function(){
     items[0][2] *= 2;    
 });
 
 //Better Seeds
-createArtifactPurchase("betterSeeds", 2500, function(){
+createArtifactPurchase("betterSeeds", artifactPrice[1], function(){
     items[0][2] *= 2;
 });
 
 //Golden Wheat Strain
-createArtifactPurchase("goldenWheatStrain", 5000, function(){
+createArtifactPurchase("goldenWheatStrain", artifactPrice[2], function(){
     items[1][2] *= 2;
 });
 
 //Babylonian Irrigation System
-createArtifactPurchase("babylonianIrrigationSystem", 10000, function(){
+createArtifactPurchase("babylonianIrrigationSystem", artifactPrice[3], function(){
     items[1][2] *= 2;
 });
 
 //shinyCoating
-createArtifactPurchase("shinyCoating", 25000, function(){
+createArtifactPurchase("shinyCoating", artifactPrice[4], function(){
     items[2][2] *= 2;
 })
 
 //Feather Insulation
-createArtifactPurchase("featherInsulation", 100000, function(){
+createArtifactPurchase("featherInsulation", artifactPrice[5], function(){
     items[3][2] *= 2;
+});
+
+//Geese Scholarship
+createArtifactPurchase("geeseScholarship", artifactPrice[6], function(){
+    items[4][2] *= 2;
+});
+
+//Goose Angel
+createArtifactPurchase("gooseAngel", artifactPrice[7], function(){
+    items[5][2] *= 2;
+    clickMultiplier *= 7;
+});
+
+//Supercharged Polarity
+createArtifactPurchase("superchargedPolarity", artifactPrice[8], function(){
+    items[6][2] *= 2;
+});
+
+//Cloning Machine
+createArtifactPurchase("cloningMachine", artifactPrice[9], function(){
+    items[7][2] *= 2;
 });
 
 ///
@@ -316,43 +383,138 @@ createArtifactPurchase("featherInsulation", 100000, function(){
 ///
 
 //click+
-createArtifactPurchase("click+", 100, function(){
+createArtifactPurchase("click+", artifactPrice[10], function(){
     clickMultiplier *= 2;
 });
 
 //click++
-createArtifactPurchase("click++", 1000, function(){
+createArtifactPurchase("click++", artifactPrice[11], function(){
     clickMultiplier *= 2;
+});
+
+//click+++
+createArtifactPurchase("click+++", artifactPrice[12], function(){
+    clickMultiplier *= 4;
+});
+
+//click++++
+createArtifactPurchase("click++++", artifactPrice[13], function(){
+    clickMultiplier *= 8;
+});
+
+//click+++++
+//e time :)
+createArtifactPurchase("click+++++", artifactPrice[14], function(){
+    clickExponent = Math.E;
+});
+
+///
+///
+///
+
+//Pet Rock
+createArtifactPurchase("petRock", artifactPrice[15], function(){
+    multiplier += 0.01; //User would never notice lmao
+});
+
+//Four Leaf Clover
+createArtifactPurchase("fourLeafClover", artifactPrice[16], function(){});
+
+//Magic Scroll
+createArtifactPurchase("magicScroll", artifactPrice[17], function(){
+    items[8][2] *= 2;
+});
+
+//Duck
+createArtifactPurchase("duck", artifactPrice[18], function(){});
+
+//Industrial Revolution
+createArtifactPurchase("industrialRevolution", artifactPrice[19], function(){
+    for (let i = 0; i < items.length; i++){
+        items[i][2] *= 2; //Double efficiency of all items
+    }
+});
+
+///
+///
+///
+
+//King Goose
+createArtifactPurchase("kingGoose", artifactPrice[20], function(){
+    multiplier *= 2;
+});
+
+//Eggscalibur
+createArtifactPurchase("eggscalibur", artifactPrice[21], function(){});
+
+//Eagle
+createArtifactPurchase("eagle", artifactPrice[22], function(){
+    items[4][2] *= 12345;
+});
+
+//Eagle
+createArtifactPurchase("babyGoose", artifactPrice[23], function(){
+    multiplier *= 1.5;
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //ARTIFACTS END
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 //This interval does 2 things:
 //Add geese from items
 //Count geese per second
+//Check what artifacts are purchasable
+//Check what items are purchasable
 setInterval(function(){
 
-    for (let i = 0; i < items.length; i++){
-        gooses += items[i][0] * items[i][2] * multiplier;
-        gooseThisSecond += items[i][0] * items[i][2] * multiplier;
+    //Check what artifacts are purchasable
+    for (let i = 0; i < artifacts.length; i++){
+        if (artifactsOwned.get(artifacts[i]) != 'true'){
+            document.getElementById(artifacts[i]).firstElementChild.innerHTML = "";
+            if (gooses < artifactPrice[i]){
+                document.getElementById(artifacts[i]).firstElementChild.style.visibility = "visible";
+            }
+            else{
+                document.getElementById(artifacts[i]).firstElementChild.style.visibility = "hidden";
+            }
+        }
+        else{
+            document.getElementById(artifacts[i]).firstElementChild.style.visibility = "visible";
+            document.getElementById(artifacts[i]).firstElementChild.innerHTML = "Sold!";
+        }
     }
 
-    goosePerSecond.innerHTML = "Geese per second: " + gooseThisSecond;
+    for (let i = 0; i < items.length; i++){
+        //Add geese from items
+        gooses += items[i][0] * items[i][2] * multiplier * kingGooseEggscalibur();
+        gooseThisSecond += items[i][0] * items[i][2] * multiplier * kingGooseEggscalibur();
+        //Check if item is purchasable
+        if (gooses < items[i][1]){
+            htmlItems[i][4].style.visibility = "visible";
+        }
+        else{
+            htmlItems[i][4].style.visibility = "hidden";
+        }
+    }
+
+    goosePerSecond.innerHTML = "Geese per second: " + Math.round(gooseThisSecond);
     gooseThisSecond = 0;
 
     gooseCount.innerHTML = Math.round(gooses) + " Geese";
     
 }, 1000);
 
-//Autosave Feature
+//////////////////////////////////////////////////////////////////////////
+//Autosave Feature////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
 setInterval(function(){
 
     localStorage.setItem("gooses", gooses);
     localStorage.setItem("multiplier", multiplier);
     localStorage.setItem("clickMultiplier", clickMultiplier);
+    localStorage.setItem("clickExponent", clickExponent);
 
     for (let i = 0; i < items.length; i++){
         for (let j = 0; j < 3; j++){
